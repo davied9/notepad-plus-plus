@@ -48,7 +48,7 @@ void TreeView::init(HINSTANCE hInst, HWND parent, int treeViewID)
                             _hInst,
                             (LPVOID)0);
 
-	int itemHeight = NppParameters::getInstance()->_dpiManager.scaleY(CY_ITEMHEIGHT);
+	int itemHeight = NppParameters::getInstance()._dpiManager.scaleY(CY_ITEMHEIGHT);
 	TreeView_SetItemHeight(_hSelf, itemHeight);
 
 	::SetWindowLongPtr(_hSelf, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
@@ -317,7 +317,7 @@ void TreeView::dragItem(HWND parentHandle, int x, int y)
     hitTestInfo.pt.x = point.x;
     hitTestInfo.pt.y = point.y;
 	HTREEITEM targetItem = reinterpret_cast<HTREEITEM>(::SendMessage(_hSelf, TVM_HITTEST, 0, reinterpret_cast<LPARAM>(&hitTestInfo)));
-    if(targetItem)
+    if (targetItem)
     {
 		::SendMessage(_hSelf, TVM_SELECTITEM, TVGN_DROPHILITE, reinterpret_cast<LPARAM>(targetItem));
     }
